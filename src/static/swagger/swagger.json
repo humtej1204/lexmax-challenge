@@ -1,0 +1,234 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Mantenimiento de Usuarios",
+    "description": "Esta API proporciona operaciones CRUD para el mantenimiento de los datos del Usuarios.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Obtener todos los registros",
+        "description": "Devuelve una lista de todos los registros en la tabla.",
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean"},
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo registro",
+        "description": "Crea un nuevo registro en la tabla.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Nombre del usuario (obligatorio)"
+                  },
+                  "lastname": {
+                    "type": "string",
+                    "description": "Apellido del usuario (obligatorio)"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Correo electrónico del usuario (obligatorio)"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Dirección del usuario"
+                  },
+                  "reference_address": {
+                    "type": "string",
+                    "description": "Referencia de la dirección del usuario"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "description": "Número de teléfono del usuario"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Registro creado exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean"},
+                    "data": {"type": "object"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/by_id/{id}": {
+      "get": {
+        "summary": "Obtener un registro específico",
+        "description": "Devuelve los detalles de un registro específico según el ID proporcionado en la ruta.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID del registro",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean"},
+                    "data": {"type": "object"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "patch": {
+        "summary": "Actualizar un registro existente",
+        "description": "Actualiza los detalles de un registro existente según el ID proporcionado en la ruta.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID del registro",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Nuevo nombre del usuario (obligatorio)"
+                  },
+                  "lastname": {
+                    "type": "string",
+                    "description": "Nuevo apellido del usuario (obligatorio)"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Nuevo correo electrónico del usuario (obligatorio)"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Nueva dirección del usuario"
+                  },
+                  "reference_address": {
+                    "type": "string",
+                    "description": "Nueva referencia de la dirección del usuario"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "description": "Nuevo número de teléfono del usuario"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Registro actualizado exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean"},
+                    "data": {"type": "object"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un registro existente",
+        "description": "Elimina un registro existente según el ID proporcionado en la ruta.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID del registro",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registro eliminado exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {"type": "boolean"},
+                    "data": {"type": "number"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
