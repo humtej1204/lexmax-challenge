@@ -31,7 +31,7 @@ Para ejecutar la solución, sigue estos pasos:
 > Antes que nada asegurate de tener instalado DOCKER en tu maquina.
 
 Ejecuta los siguientes comandos:
-* Para construir el contenedor usa `docker build -t flaskapp .``
+* Para construir el contenedor usa `docker build -t flaskapp .`
 * Para correr el contenedor usa `docker run -it -p 5000:5000 flaskapp`
 
 ### Ejecutarlo sin DOCKER:
